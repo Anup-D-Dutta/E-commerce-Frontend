@@ -108,6 +108,7 @@ import { valideURLConvert } from '../utils/valideURLConvert'
 import { useNavigate } from 'react-router-dom'
 import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
 
+
 const images = [banner1, banner2, banner3] // Array of images for the slider
 
 const Home = () => {
@@ -137,25 +138,25 @@ const Home = () => {
   }
 
   return (
-    <section className='bg-white'>
+      <section className='bg-white'>
 
-      <div className='container mx-auto'>
-        {/* Image Slider */}
-        <div className='w-full h-full min-h-48 bg-blue-100 rounded overflow-hidden relative'>
-          <motion.div
-            className='flex w-full h-full'
-            initial={{ x: '100%' }}
-            animate={{ x: '0%' }}
-            transition={{ ease: 'easeOut', duration: 0.8 }}
-            key={currentIndex}
-          >
-            <img src={images[currentIndex]} className='w-full h-full object-cover' alt='banner' />
-          </motion.div>
+        <div className='container mx-auto'>
+          {/* Image Slider */}
+          <div className='w-full h-2 lg:h-full min-h-48 bg-blue-100 rounded overflow-hidden relative'>
+            <motion.div
+              className='flex w-full h-full'
+              initial={{ x: '100%' }}
+              animate={{ x: '0%' }}
+              transition={{ ease: 'easeOut', duration: 0.8 }}
+              key={currentIndex}
+            >
+              <img src={images[currentIndex]} className='w-full h-full object-cover' alt='banner' />
+            </motion.div>
+          </div>
         </div>
-      </div>
 
-      {/* Category Section */}
-      {/* <div>
+        {/* Category Section */}
+        {/* <div>
         <h1 className='container mx-auto text-2xl font-bold p-1 text-black '>{categoryData.length > 0 ? categoryData[0].name : "No Category"}</h1>
 
         <div className='container mx-auto px-4 my-2 grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-2'>
@@ -178,14 +179,15 @@ const Home = () => {
         </div>
       </div> */}
 
-      {/* Display category-wise products */}
-      <p style={{ fontWeight: 'bold', fontSize: '1.3rem', }}>{categoryData.name}</p>
-      {categoryData?.map(c => (
+        {/* Display category-wise products */}
+        <p style={{ fontWeight: 'bold', fontSize: '1.3rem', }}>{categoryData.name}</p>
 
-        <CategoryWiseProductDisplay key={c?._id} id={c?._id} name={c?.name} />
-      ))}
+        {categoryData?.map(c => (
+          <CategoryWiseProductDisplay key={c?._id} id={c?._id} name={c?.name} />
+        ))}
 
-    </section>
+      </section>
+
   )
 }
 

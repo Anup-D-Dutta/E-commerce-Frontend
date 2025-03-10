@@ -12,6 +12,7 @@ import { useGlobalContext } from '../provider/GlobalProvider'
 import { useSelector } from 'react-redux';
 import AddToCartButton from './AddToCartButton'
 
+
 // const CardProduct = ({ data }) => {
 //   const categoryData = useSelector(state => state.product.allCategory);
 //   const subCategoryData = useSelector(state => state.product.allSubCategory);
@@ -136,7 +137,7 @@ const CardProduct = ({ data }) => {
           {subCategory.name}
         </div>
       ) : (
-        <div className='text-xs text-red-500'>No SubCategory</div>
+        <div className='text-xs text-red-500'></div>
       )}
 
       {/* Product Name */}

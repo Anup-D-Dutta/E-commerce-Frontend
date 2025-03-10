@@ -7,6 +7,10 @@ import AxiosToastError from '../utils/AxiosToastError'
 import Loading from './Loading'
 import { useSelector } from 'react-redux'
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import { FaCartShopping } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom'
+
+
 
 const AddToCartButton = ({ data }) => {
     const { fetchCartItem, updateCartItem, deleteCartItem } = useGlobalContext()
@@ -15,6 +19,21 @@ const AddToCartButton = ({ data }) => {
     const [isAvailableCart, setIsAvailableCart] = useState(false)
     const [qty, setQty] = useState(0)
     const [cartItemDetails, setCartItemsDetails] = useState()
+    const user = useSelector(state => state.user)
+    const navigate = useNavigate()
+
+
+
+    const redirectToCheckoutPage = () => {
+        if (user?._id) {
+            navigate("/checkout")
+            if (close) {
+                close()
+            }
+            return
+        }
+        toast("Please Login")
+    }
 
     const handleADDTocart = async (e) => {
         e.preventDefault()
@@ -96,12 +115,20 @@ const AddToCartButton = ({ data }) => {
                     <>
                         {/* Show full 'Add to Cart' button on medium screens and above */}
                         <button
-                            title='Add to cart'
                             onClick={handleADDTocart}
-                            className='md:block text-black font-bold text-lg w-7 h-7 flex items-center justify-center rounded-full border border-black hover:text-white hover:bg-black'
+                            className='text-white font-bold gap-3 text-lg flex items-center justify-center w-64 h-12 sm:w-[35rem] sm:h-16 bg-black border border-black hover:bg-black hover:opacity-90 transition duration-300 ease-in-out'
                         >
-                            {loading ? <Loading /> : "+"}
+                            <FaCartShopping size={25} />
+                            {loading ? <Loading /> : "Add to cart"}
                         </button>
+                        <button
+                            onClick={redirectToCheckoutPage}
+
+                            className='text-white mt-3 font-bold text-lg flex items-center justify-center w-64 h-12 sm:w-[35rem] sm:h-16 bg-black border border-black hover:bg-black hover:opacity-90 transition duration-300 ease-in-out'
+                        >
+                            {loading ? <Loading /> : "Buy Now"}
+                        </button>
+
 
 
                         {/* Show '+' icon button on small screens */}

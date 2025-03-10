@@ -18,7 +18,8 @@ const UploadProduct = () => {
     name: "",
     image: [],
     category: [],
-    subCategory: [],
+    size: [],
+    // sizes: selectedSizes,
     unit: "",
     stock: "",
     price: "",
@@ -26,6 +27,7 @@ const UploadProduct = () => {
     description: "",
     more_details: {},
   })
+
   const [imageLoading, setImageLoading] = useState(false)
   const [ViewImageURL, setViewImageURL] = useState("")
   const allCategory = useSelector(state => state.product.allCategory)
@@ -35,6 +37,8 @@ const UploadProduct = () => {
 
   const [openAddField, setOpenAddField] = useState(false)
   const [fieldName, setFieldName] = useState("")
+
+
 
 
   const handleChange = (e) => {
@@ -47,6 +51,19 @@ const UploadProduct = () => {
       }
     })
   }
+  const handleChangeSize = (e) => {
+
+    const { name, options } = e.target;
+
+    const selected = Array.from(options)
+      .filter(option => option.selected)
+      .map(option => option.value);
+
+    setData({
+      ...data,
+      [name]: selected, // Store multiple selected sizes as an array
+    });
+  };
 
   const handleUploadImage = async (e) => {
     const file = e.target.files[0]
@@ -147,7 +164,8 @@ const UploadProduct = () => {
           name: "",
           image: [],
           category: [],
-          subCategory: [],
+          size: [],
+          sizes: selectedSizes,
           unit: "",
           stock: "",
           price: "",
@@ -351,7 +369,7 @@ const UploadProduct = () => {
             </div>
           </div>
 
-          <div className='grid gap-1'>
+          {/* <div className='grid gap-1'>
             <label htmlFor='unit' className='font-medium'>Unit</label>
             <input
               id='unit'
@@ -363,7 +381,46 @@ const UploadProduct = () => {
               required
               className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
             />
+            
+          </div> */}
+          <div className='grid gap-2'>
+            <label htmlFor='size' className='font-medium'>Size</label>
+            <select
+              id='size'
+              name='size'
+              value={data.size}
+              onChange={handleChangeSize}
+              multiple
+              required
+              size={4} // This will show all the sizes directly
+              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+            >
+              <option value='XS'>XS</option>
+              <option value='S'>S</option>
+              <option value='M'>M</option>
+              <option value='L'>L</option>
+              <option value='XL'>XL</option>
+            </select>
+
+            {/* Show Selected Sizes with Remove Option */}
+            <div className='flex flex-wrap gap-2 mt-2'>
+              {data.size.length > 0 &&
+                data.size.map((item, index) => (
+                  <span
+                    key={index}
+                    className='bg-primary-100 text-primary-700 px-2 py-1 rounded cursor-pointer'
+                    onClick={() =>
+                      setData({ ...data, size: data.size.filter((s) => s !== item) })
+                    }
+                  >
+                    {item} ✖
+                  </span>
+                ))}
+            </div>
           </div>
+
+
+
 
           <div className='grid gap-1'>
             <label htmlFor='stock' className='font-medium'>Number of Stock</label>
