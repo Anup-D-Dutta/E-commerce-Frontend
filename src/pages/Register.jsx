@@ -65,7 +65,7 @@ const Register = () => {
   return (
     <section className='w-full container mx-auto px-2'>
       <div className='bg-white my-4 w-full max-w-lg mx-auto rounded p-7'>
-        <p>Welcome to Binkeyit</p>
+        <h1 className='text-center'>Welcome to Web-Name</h1>
 
         <form className='grid gap-4 mt-6' onSubmit={handleSubmit}>
           <div className='grid gap-1'>
@@ -74,7 +74,7 @@ const Register = () => {
               type='text'
               id='name'
               autoFocus
-              className='bg-blue-50 p-2 border rounded outline-none focus:border-primary-200'
+              className=' p-2 border rounded outline-none focus:border-black'
               name='name'
               value={data.name}
               onChange={handleChange}
@@ -87,7 +87,7 @@ const Register = () => {
             <input
               type='email'
               id='email'
-              className='bg-blue-50 p-2 border rounded outline-none focus:border-primary-200'
+              className=' p-2 border rounded outline-none focus:border-black'
               name='email'
               value={data.email}
               onChange={handleChange}
@@ -97,7 +97,7 @@ const Register = () => {
 
           <div className='grid gap-1'>
             <label htmlFor='password'>Password :</label>
-            <div className='bg-blue-50 p-2 border rounded flex items-center focus-within:border-primary-200'>
+            <div className=' p-2 border rounded flex items-center focus-within:border-black'>
               <input
                 type={showPassword ? 'text' : 'password'}
                 id='password'
@@ -115,7 +115,7 @@ const Register = () => {
 
           <div className='grid gap-1'>
             <label htmlFor='confirmPassword'>Confirm Password :</label>
-            <div className='bg-blue-50 p-2 border rounded flex items-center focus-within:border-primary-200'>
+            <div className=' p-2 border rounded flex items-center focus-within:border-black'>
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 id='confirmPassword'
@@ -134,16 +134,16 @@ const Register = () => {
           <button
             disabled={!valideValue}
             className={`${
-              valideValue ? 'bg-green-800 hover:bg-green-700' : 'bg-gray-500'
+              valideValue ? 'bg-black' : 'bg-gray-500'
             } text-white py-2 rounded font-semibold my-3 tracking-wide`}
           >
             Register
           </button>
         </form>
 
-        <p>
+        <p className='text-right'>
           Already have an account?{' '}
-          <Link to='/login' className='font-semibold text-green-700 hover:text-green-800'>
+          <Link to='/login' className='font-semibold text-black' >
             Login
           </Link>
         </p>

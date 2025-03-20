@@ -152,6 +152,20 @@ const SummaryApi = {
     getOrderItems : {
         url : '/api/order/order-list',
         method : 'get'
+    },
+
+    // **Wishlist APIs**
+    addToWishlist: {
+        url: "/api/wishlist/add",
+        method: "post"
+    },
+    getWishlistItems: {
+        url: "/api/wishlist/get",
+        method: "get"
+    },
+    removeFromWishlist: {
+        url: "/api/wishlist/remove",
+        method: "delete"
     }
 }
 

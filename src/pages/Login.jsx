@@ -79,7 +79,7 @@ const Login = () => {
                             <input
                                 type='email'
                                 id='email'
-                                className='bg-blue-50 p-2 border rounded outline-none focus:border-black'
+                                className='p-2 border rounded outline-none focus:border-black'
                                 name='email'
                                 value={data.email}
                                 onChange={handleChange}
@@ -88,7 +88,7 @@ const Login = () => {
                         </div>
                         <div className='grid gap-1'>
                             <label htmlFor='password'>Password :</label>
-                            <div className='bg-blue-50 p-2 border rounded flex items-center focus-within:border-black'>
+                            <div className='p-2 border rounded flex items-center focus-within:border-black'>
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     id='password'

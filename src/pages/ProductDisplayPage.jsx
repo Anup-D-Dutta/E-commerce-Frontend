@@ -13,18 +13,27 @@ import { pricewithDiscount } from '../utils/PriceWithDiscount'
 // import AddToCartButton from '../components/AddToCartButton'
 import AddToCartButton from '../components/Btn+AddToCart'
 import SizeSelector from '../components/SizeSelector'
+// import { FaRegHeart } from "react-icons/fa";
+import { useGlobalContext } from '../provider/GlobalProvider'
+import AddWishList from '../components/AddWishList'
 
 
 
 const ProductDisplayPage = () => {
   const params = useParams()
   let productId = params?.product?.split("-")?.slice(-1)[0]
+
+  console.log(productId)
   const [data, setData] = useState({
     name: "",
     image: []
   })
+
+
   const [image, setImage] = useState(0)
   const [loading, setLoading] = useState(false)
+
+
   const imageContainer = useRef()
 
   const fetchProductDetails = async () => {
@@ -59,6 +68,9 @@ const ProductDisplayPage = () => {
     imageContainer.current.scrollLeft -= 100
   }
   console.log("product data", data)
+
+
+
   return (
     <section className='container mx-auto p-4 grid lg:grid-cols-2 '>
       <div className=''>
@@ -131,14 +143,24 @@ const ProductDisplayPage = () => {
 
       <div className='p-4 lg:pl-7 text-base lg:text-lg'>
         {/* <p className='bg-green-300 w-fit px-2 rounded-full'>10 Min</p> */}
-        <h2 className='text-lg font-semibold lg:text-3xl'>{data.name}</h2>
+        <div className="flex items-center gap-2">
+          <h2 className="text-lg font-semibold lg:text-3xl">{data.name}</h2>
+          {/* WishList */}
+          <AddWishList data={data}  />
+        </div>
+
+        {/* <h2 className='text-lg font-semibold lg:text-3xl'>{data.name}</h2>
+        <div className='right'>
+          <FaRegHeart />
+
+        </div> */}
         {/* <p className=''>{data.unit}</p>  */}
         <Divider />
         <SizeSelector />
 
         <div>
           {/* <p className=''>Price</p>  */}
-          <div className='flex items-center gap-2 lg:gap-4'>
+          <div className='flex items-center gap-2 lg:gap-1'>
             <div className=' px-4 py-2 w-fit'>
               <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(pricewithDiscount(data.price, data.discount))}</p>
             </div>
@@ -146,9 +168,9 @@ const ProductDisplayPage = () => {
               data.discount && (
 
                 // <p className='line-through'>{DisplayPriceInRupees(data.price)}</p>
-                <div>
-                  {/* <p className='text-xs'>M.R.P.:</p> */}
-                  <p className='line-through'>{DisplayPriceInRupees(data.price)}</p>
+                <div className='flex'>
+                  <p className='text-xs lg:text-sm'>MRP:</p>
+                  <p className='line-through text-sm lg:text-sm'>{DisplayPriceInRupees(data.price)}</p>
 
                 </div>
               )

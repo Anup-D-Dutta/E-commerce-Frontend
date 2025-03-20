@@ -28,6 +28,7 @@ import Cloth from "../pages/Cloth";
 import Sunglass from "../pages/Sunglass";
 import Watch from "../pages/Watch";
 import Brands from "../pages/Brands";
+import WishlistPage from "../pages/WishlistPage";
 
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path: 'login',
                 element: <Login />
+            },
+            {
+                path: 'wishlist',
+                element: <WishlistPage />
             },
             {
                 path: "register",

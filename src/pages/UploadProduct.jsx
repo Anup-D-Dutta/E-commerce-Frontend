@@ -39,6 +39,17 @@ const UploadProduct = () => {
   const [openAddField, setOpenAddField] = useState(false)
   const [fieldName, setFieldName] = useState("")
 
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const sizes = ["XS", "S", "M", "L", "XL"];
+
+
+  const toggleSize = (size) => {
+    setSelectedSizes((prev) =>
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+    );
+  };
+
 
 
 
@@ -385,42 +396,50 @@ const UploadProduct = () => {
             />
             
           </div> */}
-          <div className='grid gap-2'>
-            <label htmlFor='size' className='font-medium'>Size</label>
-            <select
-              id='size'
-              name='size'
-              value={data.size}
-              onChange={handleChangeSize}
-              multiple
-              required
-              size={4} // This will show all the sizes directly
-              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
-            >
-              <option value='XS'>XS</option>
-              <option value='S'>S</option>
-              <option value='M'>M</option>
-              <option value='L'>L</option>
-              <option value='XL'>XL</option>
-            </select>
+          <div>
+            <label>Size</label>
 
-            {/* Show Selected Sizes with Remove Option */}
-            <div className='flex flex-wrap gap-2 mt-2'>
-              {data.size.length > 0 &&
-                data.size.map((item, index) => (
-                  <span
-                    key={index}
-                    className='bg-primary-100 text-primary-700 px-2 py-1 rounded cursor-pointer'
-                    onClick={() =>
-                      setData({ ...data, size: data.size.filter((s) => s !== item) })
-                    }
-                  >
-                    {item} ✖
-                  </span>
-                ))}
+            <div className='bg-blue-50 border w-full p-2 rounded' >
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {/* {selectedSizes.length > 0 ? selectedSizes.join(", ") : "Select Sizes"} */}
+                <div>Select Sizes</div>
+              </div>
+              {isOpen && (
+                <div style={{ padding: "5px", }}>
+                  {sizes.map((size) => (
+                    <div key={size} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                      <input
+                        type="checkbox"
+                        checked={selectedSizes.includes(size)}
+                        onChange={() => toggleSize(size)}
+                      />
+                      {size}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Selected sizes display */}
+            <div style={{ marginTop: "10px", display: "flex", gap: "5px", flexWrap: "wrap" }}>
+              {selectedSizes.map((size, index) => (
+                <span
+                  key={index}
+                  // style={{ background: "#ddd", padding: "5px", borderRadius: "5px", cursor: "pointer" }}
+                  className='text-sm flex items-center gap-1 bg-blue-50 mt-2'
+                  onClick={() => toggleSize(size)}
+                >
+                  {size}
+                  <div className='hover:text-red-500 cursor-pointer' onClick={() => handleRemoveSubCategory(index)}>
+                    <IoClose size={20} />
+                  </div>
+                </span>
+              ))}
             </div>
           </div>
-
 
 
 
@@ -448,7 +467,7 @@ const UploadProduct = () => {
               value={data.price}
               onChange={handleChange}
               required
-              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+              className='bg-blue-50 p-2 outline-none border focus-within:border-black rounded'
             />
           </div>
 
@@ -462,7 +481,7 @@ const UploadProduct = () => {
               value={data.discount}
               onChange={handleChange}
               required
-              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+              className='bg-blue-50 p-2 outline-none border focus-within:border-black rounded'
             />
           </div>
 
@@ -490,19 +509,19 @@ const UploadProduct = () => {
                       })
                     }}
                     required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+                    className='bg-blue-50 p-2 outline-none border focus-within:border-black rounded'
                   />
                 </div>
               )
             })
           }
 
-          <div onClick={() => setOpenAddField(true)} className=' hover:bg-primary-200 bg-white py-1 px-3 w-32 text-center font-semibold border border-primary-200 hover:text-neutral-900 cursor-pointer rounded'>
+          <div onClick={() => setOpenAddField(true)} className='text-black hover:text-white hover:bg-black bg-white py-1 px-3 w-40 text-center font-semibold border border-black cursor-pointer rounded'>
             Add Fields
           </div>
 
           <button
-            className='bg-primary-100 hover:bg-primary-200 py-2 rounded font-semibold'
+            className='border-black border hover:text-white hover:bg-black py-2 rounded font-semibold max-w-40'
           >
             Submit
           </button>
