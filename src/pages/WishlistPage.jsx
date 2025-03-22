@@ -18,7 +18,7 @@ const WishlistPage = () => {
             {wishlist.length === 0 ? (
                 <p className="text-gray-500">Your wishlist is empty.</p>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {wishlist.map((item) => {
                         const product = item?.productId || item;
                         return product?.image ? (

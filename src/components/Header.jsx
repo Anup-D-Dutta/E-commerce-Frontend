@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CiMenuBurger, CiUser } from "react-icons/ci";
@@ -14,8 +14,12 @@ import Search from "./Search";
 import { useGlobalContext } from "../provider/GlobalProvider";
 import { DisplayPriceInRupees } from "../utils/DisplayPriceInRupees";
 import logo from "../assets/logo2.png";
-import { IoMdSearch } from "react-icons/io";
-import { FaRegHeart } from "react-icons/fa";
+import { IoMdSearch, IoMdHeartEmpty } from "react-icons/io";
+import { TfiSearch } from "react-icons/tfi";
+import { LiaShoppingBagSolid } from "react-icons/lia";
+import Sidebar from "./Sidebar";
+
+
 
 const Header = () => {
     const location = useLocation();
@@ -25,12 +29,13 @@ const Header = () => {
     const cartItem = useSelector((state) => state.cartItem.cart);
     const wishlistItems = useSelector((state) => state.wishlist?.wishlistItems || []);
 
-    const { totalPrice, totalQty } = useGlobalContext();
+    const { totalPrice, totalQty, totalQtywishlist } = useGlobalContext();
 
     const [openUserMenu, setOpenUserMenu] = useState(false);
     const [openCartSection, setOpenCartSection] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+
 
     const redirectToLoginPage = () => {
         navigate("/login");
@@ -43,6 +48,18 @@ const Header = () => {
         }
         navigate("/user");
     };
+
+    const handleCart = () => {
+        // if (!user._id) {
+        //     navigate("/login");
+        //     return;
+        // }
+        navigate("/cart");
+    };
+
+
+
+
 
     return (
 
@@ -70,10 +87,11 @@ const Header = () => {
                 {/* User & Cart Icons (Always Visible) */}
                 <div>
                     {/* Mobile User Icon */}
-                    <div className="flex items-center gap-3 relative">
-                        {/* //                     Search Icon and Search Box */}
+                    <div className="flex items-center gap-3 relative p-1">
+                        {/* //Search Icon and Search Box */}
                         <div className="lg:hidden flex items-center relative">
-                            <IoMdSearch size={30} onClick={() => setShowSearch(!showSearch)} />
+                            {/* <IoMdSearch size={30} onClick={() => setShowSearch(!showSearch)} /> */}
+                            <TfiSearch color="black" size={22} onClick={() => setShowSearch(!showSearch)} />
 
                             {/* Search Box (Appears without affecting layout) */}
                             <div
@@ -84,8 +102,24 @@ const Header = () => {
                         </div>
 
                         {/* Mobile User Icon */}
-                        <button className="lg:hidden" onClick={handleMobileUser}>
-                            <FaRegCircleUser size={26} />
+                        <button className="lg:hidden" onClick={handleCart}>
+                            <LiaShoppingBagSolid color="black" size={26} />
+
+                            {cartItem[0] ? (
+                                <div>
+                                    <span className="absolute -top-1 -right-1 bg-[#000] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                                        {totalQty}
+                                        {/* <LiaShoppingBagSolid color="black" size={26} /> */}
+                                    </span>
+                                </div>
+
+                            ) : (
+                                <span className="absolute -top-1 -right-1 bg-[#000] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                                    {totalQty}
+                                </span>
+                            )}
+
+
                         </button>
                     </div>
 
@@ -93,12 +127,12 @@ const Header = () => {
                         <FaRegCircleUser size={26} />
                     </button> */}
 
-                    {/* Desktop User & Cart */}
-                    <div className="hidden lg:flex items-center gap-10">
+                    {/* Desktop User, Wishlist & Cart */}
+                    <div className="hidden lg:flex items-center gap-2">
                         {user?._id ? (
                             <div className="relative">
                                 <div onClick={() => setOpenUserMenu((prev) => !prev)} className="flex select-none items-center gap-1 cursor-pointer">
-                                    <CiUser size={30} color="black" fontWeight={"bold"} style={{ marginRight: "-0.5rem" }} />
+                                    <CiUser size={28} color="black" fontWeight={"bold"} style={{ marginRight: "-0.5rem" }} />
                                     {openUserMenu ? <GoTriangleUp size={25} /> : <GoTriangleDown size={25} />}
                                 </div>
                                 {openUserMenu && (
@@ -111,43 +145,37 @@ const Header = () => {
                             </div>
                         ) : (
                             <button onClick={redirectToLoginPage} className="flex text-lg px-2 border-black">
-                                <FaRegCircleUser size={24} color="black" style={{ marginRight: "0.7rem", fontWeight: "lighter", opacity: "0.7" }} />
+                                <FaRegCircleUser size={24} color="black" style={{ marginRight: "0.7rem", fontWeight: "bolder", opacity: "0.7" }} />
                                 Login
                             </button>
                         )}
 
                         {/* Wishlist Icon */}
-                        {/* <button onClick={() => navigate("/wishlist")} className="relative flex items-center">
-                            <FaRegHeart size={26} />
-                            {wishlistItems.length > 0 && (
-                                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                                    {wishlistItems.length}
-                                </span>
-                            )}
-                        </button> */}
                         {user?._id && ( // ✅ Show button only when user is logged in
                             <button onClick={() => navigate("/wishlist")} className="relative flex items-center">
-                                <FaRegHeart size={26} />
-                                {wishlistItems.length > 0 && (
-                                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                                        {wishlistItems.length}
-                                    </span>
-                                )}
+                                <div className="relative">
+                                    <IoMdHeartEmpty size={27} />
+                                </div>
+
                             </button>
                         )}
 
-                        <button onClick={() => setOpenCartSection(true)} className="flex items-center gap-2 px-3 py-2 rounded text-black">
-                            <div className="animate-bounce" style={{ opacity: "0.7" }}>
-                                <BsCart4 size={26} />
+                        {/* Cart Icon */}
+                        <button onClick={() => setOpenCartSection(true)} className=" relative w-10 h-6 flex items-center gap-2 px-3 py-2 rounded text-black">
+                            <div className="relative" style={{ opacity: "0.7" }}>
+                                <LiaShoppingBagSolid color="black" size={26} />
                             </div>
-                            <div style={{ opacity: "0.7" }} className="text">
+                            <div style={{ opacity: "0.7" }} className="text bg-black text-white rounded-full w-4 text-center text-xs">
                                 {cartItem[0] ? (
                                     <div>
-                                        <p>{totalQty} Items</p>
-                                        <p>{DisplayPriceInRupees(totalPrice)}</p>
+                                        <span className="absolute -top-2 -right-3 bg-[#000] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                                            {totalQty}
+                                        </span>
                                     </div>
                                 ) : (
-                                    <p>My Cart</p>
+                                    <span className="absolute -top-2 -right-3 bg-black text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                                        {totalQty}
+                                    </span>
                                 )}
                             </div>
                         </button>
@@ -171,45 +199,11 @@ const Header = () => {
             {/* Sidebar Overlay */}
             {isSidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={() => setIsSidebarOpen(false)}></div>}
 
-            {/* Sidebar Menu */}
             <div className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300`}>
                 <button className="absolute top-4 right-4 text-2xl" onClick={() => setIsSidebarOpen(false)}>✖</button>
-                <nav className="mt-16 p-6">
-                    <ul className="space-y-4 text-lg">
-                        <li className="cursor-pointer">
-                            <Link to={'/'} onClick={() => setIsSidebarOpen(false)}>Home</Link>
-                        </li>
-                        <li className="cursor-pointer">
-                            <Link to={'/shoes'} onClick={() => setIsSidebarOpen(false)}>Shoes</Link>
-                        </li>
-                        <li className="cursor-pointer flex justify-between">
-                            <Link to={'/clothes'} onClick={() => setIsSidebarOpen(false)}>Clothes</Link>
-                        </li>
-                        <li className="cursor-pointer flex justify-between">
-                            <Link to={'/sunglasses'} onClick={() => setIsSidebarOpen(false)}>Sunglasses</Link>
-                        </li>
-                        <li className="cursor-pointer flex justify-between">
-                            <Link to={'/watches'} onClick={() => setIsSidebarOpen(false)}>Watches</Link>
-                        </li>
-                        <li className="cursor-pointer flex justify-between">
-                            <Link to={'/brands'} onClick={() => setIsSidebarOpen(false)}>Brands</Link>
-                        </li>
-                    </ul>
-                    <div className="mt-10 border-t pt-4">
-                        <Link to={'/user'} onClick={() => setIsSidebarOpen(false)}>
-                            <p className="font-bold">⚡ My Account</p>
-                        </Link>
 
-                        <Link to={'/wishlist'} onClick={() => setIsSidebarOpen(false)}>
-                            <p className="mt-2">♡ Wishlist</p>
-                        </Link>
-                        {/* <p className="mt-2">♡ Wishlist</p> */}
-                        <div className="flex gap-4 mt-4">
-                            <FaFacebook className="text-xl cursor-pointer" />
-                            <FaInstagram className="text-xl cursor-pointer" />
-                        </div>
-                    </div>
-                </nav>
+                <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+
             </div>
         </header >
 

@@ -133,7 +133,7 @@ const SubCategoryPage = () => {
     <section className=''>
         <div className='p-2   bg-white shadow-md flex items-center justify-between'>
             <h2 className='font-semibold'>Sub Category</h2>
-            <button onClick={()=>setOpenAddSubCategory(true)} className='text-sm border border-black px-3 py-1 rounded hover:text-white hover:bg-black'>Add Sub Category</button>
+            <button onClick={()=>setOpenAddSubCategory(true)} className=' text-sm border border-black px-3 py-1 rounded-full hover:text-white hover:bg-black'>Add Sub Category</button>
         </div>
 
         <div className='overflow-auto w-full max-w-[95vw]'>

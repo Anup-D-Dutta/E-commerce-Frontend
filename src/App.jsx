@@ -13,8 +13,9 @@ import SummaryApi from './common/SummaryApi';
 import { handleAddItemCart } from './store/cartProduct'
 import GlobalProvider from './provider/GlobalProvider';
 import { FaCartShopping } from "react-icons/fa6";
-import CartMobileLink from './components/CartMobile';
+// import CartMobileLink from './components/CartMobile';
 import Brands from './pages/Brands';
+import BottomNavBar from './components/BottomNavBar';
 
 function App() {
   const dispatch = useDispatch()
@@ -85,14 +86,16 @@ function App() {
       <main className='min-h-[78vh]'>
         <Outlet />
       </main>
+      {/* <BottomNavBar /> */}
       <Footer />
       <Toaster />
-      {
+      {/* {
         location.pathname !== '/checkout' && (
           <CartMobileLink />
 
+
         )
-      }
+      } */}
     </GlobalProvider >
   )
 }

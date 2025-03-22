@@ -74,7 +74,7 @@ const DisplayCartItem = ({ close }) => {
                                         )
                                     }
                                 </div>
-                                <div className='bg-white p-4'>
+                                <div className='bg-white p-4 min-h-screen'>
                                     <h3 className='font-semibold'>Bill details</h3>
                                     <div className='flex gap-4 justify-between ml-1'>
                                         <p>Items total</p>

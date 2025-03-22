@@ -20,6 +20,7 @@ const GlobalProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [notDiscountTotalPrice, setNotDiscountTotalPrice] = useState(0);
   const [totalQty, setTotalQty] = useState(0);
+  const [totalQtywishlist, setTotalQtywishliat] = useState(0);
   const cartItem = useSelector((state) => state.cartItem.cart);
   const user = useSelector((state) => state?.user);
   const wishlist = useSelector((state) => state.wishlistItem.wishlist);
@@ -115,8 +116,12 @@ const GlobalProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const qty = cartItem.reduce((prev, curr) => prev + curr.quantity, 0);
-    setTotalQty(qty);
+    const qtyCart = cartItem.reduce((prev, curr) => prev + curr.quantity, 0);
+    setTotalQty(qtyCart);
+
+    const qtyWishlist = (wishlist || []).reduce((prev, curr) => prev + (curr.quantity || 0), 0);
+    setTotalQtywishliat(qtyWishlist);
+    
 
     const tPrice = cartItem.reduce(
       (prev, curr) => prev + pricewithDiscount(curr?.productId?.price, curr?.productId?.discount) * curr.quantity,
@@ -129,7 +134,7 @@ const GlobalProvider = ({ children }) => {
       0
     );
     setNotDiscountTotalPrice(notDiscountPrice);
-  }, [cartItem]);
+  }, [cartItem, wishlist]);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -195,6 +200,7 @@ const GlobalProvider = ({ children }) => {
         fetchAddress,
         totalPrice,
         totalQty,
+        totalQtywishlist,
         notDiscountTotalPrice,
         fetchOrder,
         wishlist,

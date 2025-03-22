@@ -107,6 +107,7 @@ import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
 import { useNavigate } from 'react-router-dom'
 import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
+import BottomNavbar from '../components/BottomNavBar'
 
 
 const images = [banner1, banner2, banner3] // Array of images for the slider
@@ -185,6 +186,8 @@ const Home = () => {
         {categoryData?.map(c => (
           <CategoryWiseProductDisplay key={c?._id} id={c?._id} name={c?.name} />
         ))}
+
+        <BottomNavbar />
 
       </section>
 

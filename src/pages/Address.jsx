@@ -39,7 +39,7 @@ const Address = () => {
     <div className=''>
       <div className='bg-white shadow-lg px-2 py-2 flex justify-between gap-4 items-center '>
         <h2 className='font-semibold text-ellipsis line-clamp-1'>Address</h2>
-        <button onClick={() => setOpenAddress(true)} className='border border-primary-200 text-primary-200 px-3 hover:bg-primary-200 hover:text-black py-1 rounded-full'>
+        <button onClick={() => setOpenAddress(true)} className='border border-black text-black px-3 hover:bg-black hover:text-white py-1 rounded-full'>
           Add Address
         </button>
       </div>
@@ -92,13 +92,13 @@ const Address = () => {
                     setOpenEdit(true);
                     setEditData(address);
                   }}
-                  className='bg-green-200 p-1 rounded hover:text-white hover:bg-green-600'
+                  className=' p-1 rounded hover:text-green-600 '
                 >
                   <MdEdit />
                 </button>
                 <button
                   onClick={() => handleDisableAddress(address._id)}
-                  className='bg-red-200 p-1 rounded hover:text-white hover:bg-red-600'
+                  className=' p-1 rounded hover:text-red-600 '
                 >
                   <MdDelete size={20} />
                 </button>

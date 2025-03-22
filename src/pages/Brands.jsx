@@ -33,12 +33,12 @@ const Brands = () => {
     });
 
     return (
-        <div>
+        <div className='bg-white'>
             {categoryData.length > 0 && categoryData.map(category => (
                 groupedSubcategories[category.name] ? (
-                    <div key={category._id} className="mb-6">
-                        <h1 className="container mx-auto md:text-2xl font-bold md:p-3 text-black capitalize">{category.name}</h1>
-                        <div className="container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 p-2 gap-4">
+                    <div key={category._id} className="mb-6 ">
+                        <h1 className="container p-3 mx-auto md:text-2xl font-bold md:p-3 text-black capitalize">{category.name}</h1>
+                        <div className=" container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 p-2 gap-4">
                             {loadingCategory
                                 ? new Array(12).fill(null).map((_, index) => (
                                     <div key={index} className="bg-white rounded p-4 min-h-36 grid gap-2 shadow animate-pulse">
@@ -49,12 +49,12 @@ const Brands = () => {
                                 : groupedSubcategories[category.name].map(cat => (
                                     <div
                                         key={cat._id}
-                                        className="grid place-items-center p-2 rounded-lg cursor-pointer border-black g-2"
+                                        className=" grid place-items-center p-2 rounded-lg cursor-pointer border-black g-2"
                                         onClick={() => handleRedirectProductListpage(cat._id, cat.name)}
                                     >
                                         <img
                                             src={cat.image}
-                                            className="object-scale-down md:h-72 h-28 w-64 bg-white"
+                                            className="object-scale-down md:h-72 h-28 w-64 bg-gray-100"
                                             alt={cat.name}
                                         />
                                         <p className="text-center font-bold text-sm md:text-lg mt-3">{cat.name}</p>

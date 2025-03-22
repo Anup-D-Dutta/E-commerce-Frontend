@@ -61,7 +61,7 @@ const Sunglass = () => {
   const redirectURL = handleRedirectProductListpage();
 
   return (
-    <div>
+    <div className='bg-white'>
       <div className='container mx-auto p-4 flex items-center justify-between gap-4'>
         {/* <h3 className='font-semibold text-lg md:text-2xl capitalize'>Watch</h3> */}
         {/* <Link to={redirectURL} className='text-green-600 hover:text-green-400'>See All</Link> */}
