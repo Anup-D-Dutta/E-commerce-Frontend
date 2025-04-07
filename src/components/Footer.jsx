@@ -44,9 +44,9 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-8 mt-16 mb-8">
+    <footer className="bg-black text-white py-8 mt-16 mb-8 lg:mb-0">
       <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-        
+
         {/* INFO SECTION */}
         <div>
           <h3 className="font-bold mb-6 text-xl">INFO</h3>
@@ -54,7 +54,7 @@ const Footer = () => {
             <li><a href="#" className="lg:hover:text-gray-400 text-gray-300">Contact Us</a></li>
             <li><a href="#" className="lg:hover:text-gray-400 text-gray-300">Releases</a></li>
             <li><a href="#" className="lg:hover:text-gray-400 text-gray-300">Stores</a></li>
-            <li><a href="#" className="lg:hover:text-gray-400 text-gray-300">Brands</a></li>
+            <li><a href="/brands" className="lg:hover:text-gray-400 text-gray-300">Brands</a></li>
             <li><a href="#" className="lg:hover:text-gray-400 text-gray-300">Blogs</a></li>
           </ul>
         </div>
@@ -96,6 +96,11 @@ const Footer = () => {
               <FaInstagram size={24} />
             </a>
           </div>
+        </div>
+
+        <div>
+          <p className='text-white'>© 2025, New balance.</p>
+
         </div>
 
       </div>

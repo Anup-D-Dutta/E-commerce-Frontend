@@ -62,7 +62,9 @@ const DisplayCartItem = ({ close }) => {
                                                         </div>
                                                         <div className='w-full max-w-sm text-xs'>
                                                             <p className='text-xs text-ellipsis line-clamp-2'>{item?.productId?.name}</p>
-                                                            <p className='text-neutral-400'>{item?.productId?.unit}</p>
+                                                            {/* <p className='text-neutral-400'>{item?.productId?.unit}</p> */}
+                                                            <p className='text-neutral-400'>{item?.size}</p>
+
                                                             <p className='font-semibold'>{DisplayPriceInRupees(pricewithDiscount(item?.productId?.price, item?.productId?.discount))}</p>
                                                         </div>
                                                         <div>
@@ -74,7 +76,7 @@ const DisplayCartItem = ({ close }) => {
                                         )
                                     }
                                 </div>
-                                <div className='bg-white p-4 min-h-screen'>
+                                <div className='bg-white p-4 '>
                                     <h3 className='font-semibold'>Bill details</h3>
                                     <div className='flex gap-4 justify-between ml-1'>
                                         <p>Items total</p>
@@ -98,7 +100,7 @@ const DisplayCartItem = ({ close }) => {
                             <div className='bg-white flex flex-col justify-center items-center'>
                                 <img
                                     src={imageEmpty}
-                                    style={{height: '15rem'}}
+                                    style={{ height: '15rem' }}
                                     className='w-full h-full object-scale-down'
                                 />
                                 <p style={{ fontSize: '1.8rem', fontWeight: 'bold', color: 'black', marginBottom: '1rem' }}>Your cart is empty</p>

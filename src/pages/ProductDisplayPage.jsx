@@ -13,15 +13,25 @@ import { pricewithDiscount } from '../utils/PriceWithDiscount'
 // import AddToCartButton from '../components/AddToCartButton'
 import AddToCartButton from '../components/Btn+AddToCart'
 import SizeSelector from '../components/SizeSelector'
-// import { FaRegHeart } from "react-icons/fa";
 import { useGlobalContext } from '../provider/GlobalProvider'
 import AddWishList from '../components/AddWishList'
+import ProductNavbar from '../components/ProductNavbar'
+import { FaWhatsapp } from "react-icons/fa";
+import { IoLogoInstagram } from "react-icons/io5";
+import { ImFacebook2 } from "react-icons/im";
+import { FaTwitter } from "react-icons/fa6";
+import Accordion from '../components/ProductInformation'
+
+
 
 
 
 const ProductDisplayPage = () => {
   const params = useParams()
+
   let productId = params?.product?.split("-")?.slice(-1)[0]
+  const [selectedSize, setSelectedSize] = useState(null);
+
 
   console.log(productId)
   const [data, setData] = useState({
@@ -30,8 +40,10 @@ const ProductDisplayPage = () => {
   })
 
 
-  const [image, setImage] = useState(0)
-  const [loading, setLoading] = useState(false)
+  const [image, setImage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [qty, setQty] = useState(0);
+
 
 
   const imageContainer = useRef()
@@ -67,7 +79,6 @@ const ProductDisplayPage = () => {
   const handleScrollLeft = () => {
     imageContainer.current.scrollLeft -= 100
   }
-  console.log("product data", data)
 
 
 
@@ -77,7 +88,8 @@ const ProductDisplayPage = () => {
         <div className='bg-white lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-56 max-h-56 h-full w-full'>
           <img
             src={data.image[image]}
-            className='w-full h-full object-scale-down'
+            // className='w-full h-full object-scale-down'
+            className='w-full h-full object-contain'
           />
         </div>
         <div className='flex items-center justify-center gap-3 my-2'>
@@ -146,7 +158,7 @@ const ProductDisplayPage = () => {
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-semibold lg:text-3xl">{data.name}</h2>
           {/* WishList */}
-          <AddWishList data={data}  />
+          <AddWishList data={data} />
         </div>
 
         {/* <h2 className='text-lg font-semibold lg:text-3xl'>{data.name}</h2>
@@ -156,12 +168,11 @@ const ProductDisplayPage = () => {
         </div> */}
         {/* <p className=''>{data.unit}</p>  */}
         <Divider />
-        <SizeSelector />
 
         <div>
           {/* <p className=''>Price</p>  */}
-          <div className='flex items-center gap-2 lg:gap-1'>
-            <div className=' px-4 py-2 w-fit'>
+          <div className='flex items-center gap-2 lg:gap-1 mt-5'>
+            <div className='py-2 w-fit'>
               <p className='font-semibold text-lg lg:text-xl'>{DisplayPriceInRupees(pricewithDiscount(data.price, data.discount))}</p>
             </div>
             {
@@ -184,6 +195,12 @@ const ProductDisplayPage = () => {
           </div>
 
         </div>
+        {/* <SizeSelector /> */}
+
+        <div className='my-6'>
+          <SizeSelector selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+
+        </div>
 
         {
           data.stock === 0 ? (
@@ -191,8 +208,10 @@ const ProductDisplayPage = () => {
           )
             : (
               // <button className='my-4 px-4 py-1 w-[25rem] h-14 bg-black text-white rounded' data={data} s>Add to cart</button>
-              <div className='my-4'>
-                <AddToCartButton data={data} />
+              <div className=''>
+                {/* <AddToCartButton data={data} /> */}
+                <AddToCartButton data={data} selectedSize={selectedSize} />
+
               </div>
             )
         }
@@ -235,15 +254,24 @@ const ProductDisplayPage = () => {
                   </div>
             </div> */}
 
+        <div className='my-7 flex text-center items-center gap-7'>
+          <p className='text-gray-500 h-fit flex'>Share</p>
+          <div className='flex gap-3'>
+            <FaWhatsapp size={25} className='text-gray-700' />
+            <FaTwitter size={25} className='text-gray-700' />
+            <ImFacebook2 size={22} className='text-gray-700' />
+            <IoLogoInstagram size={25} className='text-gray-700' />
+          </div>
+        </div>
+
+
+
         {/****only mobile */}
-        <div className='my-4 grid gap-3 '>
+
+        {/* <div className='my-4 grid gap-3 '>
           <div>
             <p className='font-semibold'>Description</p>
             <p className='text-base'>{data.description}</p>
-          </div>
-          <div>
-            {/* <p className='font-semibold'>Unit</p>
-                    <p className='text-base'>{data.unit}</p> */}
           </div>
           {
             data?.more_details && Object.keys(data?.more_details).map((element, index) => {
@@ -255,7 +283,12 @@ const ProductDisplayPage = () => {
               )
             })
           }
-        </div>
+        </div> */}
+        <Accordion data={data} />
+
+
+        <ProductNavbar data={data} selectedSize={selectedSize} />
+
       </div>
     </section>
   )

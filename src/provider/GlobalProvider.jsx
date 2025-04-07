@@ -70,6 +70,34 @@ const GlobalProvider = ({ children }) => {
 
 // Cart 
 
+// const addToCartItem = async (productId, size) => {
+//   try {
+//     if (!productId || !size) {
+//       toast.error("Product and size are required");
+//       return;
+//     }
+
+//     const response = await Axios({
+//       ...SummaryApi.addTocart,
+//       data: {
+//         productId,
+//         size,
+//       },
+//     });
+
+//     const { data: responseData } = response;
+
+//     if (responseData.success) {
+//       toast.success(responseData.message);
+//       fetchCartItem(); // Refresh the cart
+//       return responseData;
+//     }
+//   } catch (error) {
+//     AxiosToastError(error);
+//   }
+// };
+
+
   const fetchCartItem = async () => {
     try {
       const response = await Axios({ ...SummaryApi.getCartItem });
@@ -206,6 +234,7 @@ const GlobalProvider = ({ children }) => {
         wishlist,
         fetchWishListItem,
         removeWishListItem,
+        // addToCartItem
         // addToWishlist,
         // removeFromWishlist,
       }}

@@ -8,6 +8,8 @@ import Loading from './Loading'
 import { useSelector } from 'react-redux'
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
+
+
 const AddToCartButton = ({ data }) => {
     const { fetchCartItem, updateCartItem, deleteCartItem } = useGlobalContext()
     const [loading, setLoading] = useState(false)
@@ -15,6 +17,8 @@ const AddToCartButton = ({ data }) => {
     const [isAvailableCart, setIsAvailableCart] = useState(false)
     const [qty, setQty] = useState(0)
     const [cartItemDetails, setCartItemsDetails] = useState()
+
+    
 
     const handleADDTocart = async (e) => {
         e.preventDefault()
@@ -26,7 +30,7 @@ const AddToCartButton = ({ data }) => {
             const response = await Axios({
                 ...SummaryApi.addTocart,
                 data: {
-                    productId: data?._id
+                    productId: data?._id,
                 }
             })
 
@@ -47,14 +51,26 @@ const AddToCartButton = ({ data }) => {
     }
 
     //checking this item in cart or not
-    useEffect(() => {
-        const checkingitem = cartItem.some(item => item.productId._id === data._id)
-        setIsAvailableCart(checkingitem)
+    // useEffect(() => {
+    //     const checkingitem = cartItem.some(item => item.productId._id === data._id)
+    //     setIsAvailableCart(checkingitem)
 
-        const product = cartItem.find(item => item.productId._id === data._id)
-        setQty(product?.quantity)
-        setCartItemsDetails(product)
-    }, [data, cartItem])
+    //     const product = cartItem.find(item => item.productId._id === data._id)
+    //     setQty(product?.quantity)
+    //     setCartItemsDetails(product)
+    // }, [data, cartItem])
+
+    useEffect(() => {
+        if (!data || !data._id || !Array.isArray(cartItem)) return; // Safety check
+
+        const checkingitem = cartItem.some(item => item?.productId?._id === data._id);
+        setIsAvailableCart(checkingitem);
+
+        const product = cartItem.find(item => item?.productId?._id === data._id);
+        setQty(product?.quantity || 0);
+        setCartItemsDetails(product);
+    }, [data, cartItem]);
+
 
 
     const increaseQty = async (e) => {
@@ -83,14 +99,15 @@ const AddToCartButton = ({ data }) => {
     }
     return (
         <div className='w-full max-w-[150px]'>
+           
             {
                 isAvailableCart ? (
                     <div className='flex w-full h-full'>
-                        <button onClick={decreaseQty} className='text-sm text-black  hover:text-white flex w-6 h-6 lg:border border-black hover:bg-black p-1 rounded-full flex items-center justify-center'><FaMinus /></button>
+                        <button onClick={decreaseQty} className='text-sm text-black  hover:text-white w-6 h-6 lg:border border-black hover:bg-black p-1 rounded-full flex items-center justify-center'><FaMinus /></button>
 
                         <p className='flex-1 w-full font-semibold px-1 flex items-center justify-center'>{qty}</p>
 
-                        <button onClick={increaseQty} className='text-sm text-black hover:text-white lg:border border-black hover:bg-black w-6 h-6 flex p-1 rounded-full flex items-center justify-center'><FaPlus /></button>
+                        <button onClick={increaseQty} className='text-sm text-black hover:text-white lg:border border-black hover:bg-black w-6 h-6 p-1 rounded-full flex items-center justify-center'><FaPlus /></button>
                     </div>
                 ) : (
                     <>

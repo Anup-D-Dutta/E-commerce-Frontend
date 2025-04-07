@@ -60,7 +60,7 @@ const OtpVerification = () => {
     }
 
     return (
-        <section className='w-full container mx-auto px-2'>
+        <section className='w-full h-[90vh] container mx-auto px-2 bg-gray-200 flex items-center justify-center'>
             <div className='bg-white my-4 w-full max-w-lg mx-auto rounded p-7'>
                 <p className='font-semibold text-lg'>Enter OTP</p>
                 <form className='grid gap-4 py-4' onSubmit={handleSubmit}>
@@ -94,7 +94,7 @@ const OtpVerification = () => {
 
                                             }}
                                             maxLength={1}
-                                            className='bg-blue-50 w-full max-w-16 p-2 border rounded outline-none focus:border-primary-200 text-center font-semibold'
+                                            className='bg-blue-50 w-full max-w-16 p-2 border rounded outline-none focus:border-black text-center font-semibold'
                                         />
                                     )
                                 })
@@ -103,12 +103,12 @@ const OtpVerification = () => {
                         
                     </div>
              
-                    <button disabled={!valideValue} className={` ${valideValue ? "bg-green-800 hover:bg-green-700" : "bg-gray-500" }    text-white py-2 rounded font-semibold my-3 tracking-wide`}>Verify OTP</button>
+                    <button disabled={!valideValue} className={` ${valideValue ? "bg-black " : "bg-gray-500" }    text-white py-2 rounded font-semibold my-3 tracking-wide`}>Verify OTP</button>
 
                 </form>
 
                 <p>
-                    Already have account? <Link to={"/login"} className='font-semibold text-green-700 hover:text-green-800'>Login</Link>
+                    Already have account? <Link to={"/login"} className='font-semibold text-gray-600 hover:text-black'>Login</Link>
                 </p>
             </div>
         </section>

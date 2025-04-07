@@ -63,7 +63,7 @@ const Header = () => {
 
     return (
 
-        <header className="h-16 lg:h-36 lg:shadow-md sticky top-0 z-40 flex flex-col justify-center gap-1 bg-white">
+        <header className="h-16 p-2 lg:h-36 lg:shadow-md sticky top-0 z-40 flex flex-col justify-center gap-1 bg-white">
             {/* Main Header (Always Visible) */}
             <div className="container mx-auto flex items-center px-2 justify-between border-black">
                 {/* Sidebar Toggle Button */}

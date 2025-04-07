@@ -143,7 +143,7 @@ const Home = () => {
 
         <div className='container mx-auto'>
           {/* Image Slider */}
-          <div className='w-full h-2 lg:h-full min-h-48 bg-blue-100 rounded overflow-hidden relative'>
+          <div className=' p-1 h-2 lg:h-[31rem] min-h-48 overflow-hidden relative'>
             <motion.div
               className='flex w-full h-full'
               initial={{ x: '100%' }}

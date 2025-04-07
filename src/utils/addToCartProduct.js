@@ -3,13 +3,14 @@ import SummaryApi from "../common/SummaryApi"
 import Axios from "./Axios"
 import AxiosToastError from "./AxiosToastError"
 
-export const addToCartProduct = async(productId,qty)=>{
+export const addToCartProduct = async(productId,qty, size)=>{
     try {
         const response = await Axios({
             ...SummaryApi.addTocart,
             data : {
                 quantity : qty,
-                productId : productId
+                productId : productId,
+                size
             }
         })
 
@@ -31,7 +32,7 @@ export const addToCartProduct = async(productId,qty)=>{
 export const getCartItems = async()=>{
     try {
         const response = await Axios({
-            ...SummaryApi.getCartItems
+            ...SummaryApi.getCartItem
         })
 
         const { data : responseData } = response

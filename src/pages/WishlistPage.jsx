@@ -12,7 +12,7 @@ const WishlistPage = () => {
     }, []);
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 ">
             <h2 className="text-2xl font-bold mb-4">My Wishlist</h2>
 
             {wishlist.length === 0 ? (

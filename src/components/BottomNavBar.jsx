@@ -1,9 +1,13 @@
 
 import React, { useState } from "react";
 import { HomeIcon, Squares2X2Icon, UserIcon, HeartIcon } from "@heroicons/react/24/solid";
+import { AiOutlineHome } from "react-icons/ai";
+import { FiHeart } from "react-icons/fi";
+
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { CiUser } from "react-icons/ci";
 
 const BottomNavBar = () => {
     const [selected, setSelected] = useState(0);
@@ -12,43 +16,43 @@ const BottomNavBar = () => {
 
     return (
         <>
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-black shadow-lg rounded-t-xl">
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg rounded-t-xl">
                 <div className="flex justify-around py-3">
 
                     {/* Home */}
                     <Link to="/" onClick={() => setSelected(0)}>
-                        <button className={`p-2 ${selected === 0 ? "opacity-100" : "opacity-50"}`}>
-                            <HomeIcon className="w-6 h-6 text-white" />
+                        <button className={`p-2 `}>
+                            <AiOutlineHome size={24} className=" text-gray-700" />
                         </button>
                     </Link>
 
                     {/* Wishlist */}
                     <Link to="/wishlist" onClick={() => setSelected(1)}>
-                        <button className={`p-2 ${selected === 1 ? "opacity-100" : "opacity-50"}`}>
-                            <HeartIcon className="w-6 h-6 text-white" />
+                        <button className={`p-2`}>
+                            <FiHeart size={23} className=" text-gray-700" />
                         </button>
                     </Link>
 
                     {/* Category Button (Opens Sidebar) */}
                     <button 
-                        className={`p-2 ${selected === 2 ? "opacity-100" : "opacity-50"}`} 
+                        className={`p-2 `} 
                         onClick={() => { setSelected(2); setIsSidebarOpen(true); }}
                     >
-                        <Squares2X2Icon className="w-6 h-6 text-white" />
+                        <Squares2X2Icon className="w-6 h-6 text-gray-700" />
                     </button>
 
                     {/* Profile */}
                     <div>
                         {user?._id ? (
-                            <Link to="/user" onClick={() => setSelected(3)}>
-                                <button className={`p-2 ${selected === 3 ? "opacity-100" : "opacity-50"}`}>
-                                    <UserIcon className="w-6 h-6 text-white" />
+                            <Link to="/user" >
+                                <button className={`p-2 ${selected === 3}`}>
+                                    <UserIcon className="w-6 h-6 text-gray-700" />
                                 </button>
                             </Link>
                         ) : (
-                            <Link to="/login" onClick={() => setSelected(3)}>
-                                <button className={`p-2 ${selected === 3 ? "opacity-100" : "opacity-50"}`}>
-                                    <UserIcon className="w-6 h-6 text-white" />
+                            <Link to="/login" >
+                                <button className={`p-2 ${selected === 3}`}>
+                                    <UserIcon className="w-6 h-6 text-gray-700" />
                                 </button>
                             </Link>
                         )}

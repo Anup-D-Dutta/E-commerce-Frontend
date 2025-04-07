@@ -63,7 +63,7 @@ const Register = () => {
   )
 
   return (
-    <section className='w-full container mx-auto px-2'>
+    <section className='w-full h-[90vh] lg:h-[85vh] flex items-center justify-center container mx-auto px-2 bg-gray-200'>
       <div className='bg-white my-4 w-full max-w-lg mx-auto rounded p-7'>
         <h1 className='text-center'>Welcome to Web-Name</h1>
 
