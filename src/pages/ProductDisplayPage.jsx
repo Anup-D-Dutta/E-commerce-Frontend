@@ -21,6 +21,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { ImFacebook2 } from "react-icons/im";
 import { FaTwitter } from "react-icons/fa6";
 import Accordion from '../components/ProductInformation'
+import DeliveryDetails from '../components/DeliveryDetails'
 
 
 
@@ -31,7 +32,6 @@ const ProductDisplayPage = () => {
 
   let productId = params?.product?.split("-")?.slice(-1)[0]
   const [selectedSize, setSelectedSize] = useState(null);
-
 
   console.log(productId)
   const [data, setData] = useState({
@@ -264,6 +264,9 @@ const ProductDisplayPage = () => {
           </div>
         </div>
 
+        {/* Delivery Details */}
+
+        <DeliveryDetails />
 
 
         {/****only mobile */}
