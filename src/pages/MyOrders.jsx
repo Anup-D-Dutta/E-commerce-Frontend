@@ -64,14 +64,16 @@ const MyOrders = () => {
               <div className='flex gap-3'>
                 <img
                   src={order?.product_details?.image[0]}
-                  className='w-14 h-14'
+                  className='w-20 h-14'
                   alt='product'
                 />
                 <div>
                   <p className='font-medium'>{order?.product_details?.name}</p>
-                  {order?.selectedSize && (
+                  {/* <p className='font-medium'>{order?.product_details?.size}</p> */}
+
+                  {/* {order?.selectedSize && (
                     <p>Size: {order.selectedSize}</p>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

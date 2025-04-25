@@ -1,4 +1,6 @@
-export const baseURL = import.meta.env.VITE_API_URL
+// export const baseURL = import.meta.env.VITE_API_URL
+export const baseURL = "https://e-commerce-backend-hazel-beta.vercel.app"
+
 
 const SummaryApi = {
     register : {
