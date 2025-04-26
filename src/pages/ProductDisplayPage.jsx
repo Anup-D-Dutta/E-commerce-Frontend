@@ -289,7 +289,6 @@ const ProductDisplayPage = () => {
         </div> */}
         <Accordion data={data} />
 
-
         <ProductNavbar data={data} selectedSize={selectedSize} />
 
       </div>

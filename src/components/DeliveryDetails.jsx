@@ -43,21 +43,22 @@ export default function DeliveryDetails() {
   };
 
   return (
-    <div className="max-w-md">
+    <div className="lg:w-[35rem] w-[19.5rem] md:w-[30rem]">
+      
       <h1 className="text-lg font-semibold mb-2">Delivery Details</h1>
 
-      <div className="flex items-center border border-gray-300 rounded-md overflow-hidden w-full mb-">
+      <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
         <input
           type="text"
           inputMode="numeric"
           placeholder="Enter Pincode"
           value={pincode}
           onChange={handleChange}
-          className="flex-1 px-4 py-2 text-gray-700 placeholder-gray-400 focus:outline-none"
+          className="flex-1 px-4 py-2 text-gray-700 placeholder-gray-400 focus:outline-none w-full"
         />
         <button
           onClick={handleCheck}
-          className="px-4 py-2 text-black font-bold hover:underline"
+          className="px-4 py-2 text-black font-bold hover:underline whitespace-nowrap"
         >
           CHECK
         </button>

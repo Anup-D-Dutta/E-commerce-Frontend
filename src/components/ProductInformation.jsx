@@ -48,7 +48,8 @@ export default function Accordion({ data }) {
   };
 
   return (
-    <div className="max-w-xl mx-0 border rounded-md shadow-sm mt-5">
+    <div className="lg:w-[35rem] w-[19.5rem] md:w-[30rem] border rounded-md shadow-sm mt-5">
+
       <ProductInformation
         title="Product Details"
         content="This product is made from eco-friendly materials."
