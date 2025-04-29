@@ -199,6 +199,7 @@ const AddToCartButton = ({ data, selectedSize }) => {
 
         if (Array.isArray(data?.size) && data.size.length > 0 && !selectedSize) {
             toast.error("Please select a size before adding to cart");
+            // <p>Please select a size before adding to cart</p>
             return;
         }
 

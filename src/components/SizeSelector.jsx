@@ -20,7 +20,7 @@ export default function SizeSelector({ selectedSize, setSelectedSize }) {
           <button
             key={size}
             className={`px-4 py-2 border-2 rounded-lg ${
-              selectedSize === size ? "border-black bg-gray-200" : "border-gray-300"
+              selectedSize === size ? "border-red-300 bg-gray-200" : "border-black"
             }`}
             onClick={() => handleSizeSelect(size)}
           >

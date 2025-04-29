@@ -58,9 +58,9 @@ const AddWishList = ({ data, size='md' }) => {
         // <button onClick={handleToggleWishlist} className={`flex items-center justify-center ${sizeClass}`} disabled={loading}>
         <button onClick={handleToggleWishlist} className='flex items-center justify-center p-1 text-xs lg:p-2 lg:text-base' disabled={loading}>
             {isAvailableWishlist ? (
-                    <FaHeart size={26} className="text-red-500 transition-all duration-300" />
+                    <FaHeart className="text-red-500 transition-all duration-300 text-[18px] lg:text-[22px]" />
             ) : (
-                    <FaRegHeart color="black" size={26} className="text-gray-500 transition-all duration-300" />
+                    <FaRegHeart color="black" className="text-gray-500 transition-all duration-300 text-[18px] lg:text-[22px]" />
             )}
         </button>
     );

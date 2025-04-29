@@ -33,7 +33,7 @@ const Brands = () => {
     });
 
     return (
-        <div className='bg-white'>
+        <div className='bg-slate-100'>
             {categoryData.length > 0 && categoryData.map(category => (
                 groupedSubcategories[category.name] ? (
                     <div key={category._id} className="mb-6 ">
@@ -49,12 +49,12 @@ const Brands = () => {
                                 : groupedSubcategories[category.name].map(cat => (
                                     <div
                                         key={cat._id}
-                                        className=" grid place-items-center p-2 rounded-lg cursor-pointer border-black g-2"
+                                        className="  h-[13rem] w-[10rem] lg:h-[22rem] lg:w-72 grid place-items-center p-2 rounded-lg cursor-pointer border-black g-2"
                                         onClick={() => handleRedirectProductListpage(cat._id, cat.name)}
                                     >
                                         <img
                                             src={cat.image}
-                                            className="object-scale-down md:h-72 h-28 w-64 bg-gray-100"
+                                            className="object-cover h-full w-full shadow"
                                             alt={cat.name}
                                         />
                                         <p className="text-center font-bold text-sm md:text-lg mt-3">{cat.name}</p>

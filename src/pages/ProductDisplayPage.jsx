@@ -19,10 +19,11 @@ import ProductNavbar from '../components/ProductNavbar'
 import { FaWhatsapp } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { ImFacebook2 } from "react-icons/im";
-import { FaTwitter } from "react-icons/fa6";
+import { FaTwitter, FaRegCopy } from "react-icons/fa6";
 import Accordion from '../components/ProductInformation'
 import DeliveryDetails from '../components/DeliveryDetails'
-
+import clsx from 'clsx';
+// import { FaRegCopy } from "react-icons/fa6";
 
 
 
@@ -83,24 +84,43 @@ const ProductDisplayPage = () => {
 
 
   return (
-    <section className='container mx-auto p-4 grid lg:grid-cols-2 '>
+    <section className='container mx-auto grid lg:grid-cols-2 '>
       <div className=''>
-        <div className='bg-white lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-56 max-h-56 h-full w-full'>
+        <div className='bg-white lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-7 max-h-[24rem] h-full w-full border'>
           <img
             src={data.image[image]}
-            // className='w-full h-full object-scale-down'
-            className='w-full h-full object-contain'
+            className='w-full h-full object-cover'
           />
         </div>
-        <div className='flex items-center justify-center gap-3 my-2'>
+        {/* <div className='flex items-center justify-center gap-3 my-2'>
           {
             data.image.map((img, index) => {
               return (
-                <div key={img + index + "point"} className={`bg-black w-3 h-3 lg:w-2 lg:h-2 rounded-full ${index === image && "bg-slate-300"}`}></div>
+                // <div key={img + index + "point"} className={`bg-gray-300 w-3 h-3 lg:w-2 lg:h-2 rounded-full ${index === image && "bg-black"}`}></div>
+                <div
+                  key={img + index + "point"}
+                  className={clsx(
+                    "bg-gray-300 w-3 h-3 lg:w-2 lg:h-2 rounded-full",
+                    index === image && "bg-black"
+                  )}
+                ></div>
               )
             })
           }
+        </div> */}
+        <div className='flex items-center justify-center gap-3 my-2'>
+          {data.image.map((img, index) => (
+            <div
+              key={img + index + "point"}
+              className={clsx(
+                "w-2 h-2 lg:w-2 lg:h-2 rounded-full",
+                index === Number(image) ? "bg-black" : "bg-gray-300"
+              )}
+            />
+          ))}
         </div>
+
+
         <div className='grid relative'>
           <div ref={imageContainer} className='flex gap-4 z-10 relative w-full overflow-x-auto scrollbar-none'>
             {
@@ -153,12 +173,15 @@ const ProductDisplayPage = () => {
       </div>
 
 
-      <div className='p-4 lg:pl-7 text-base lg:text-lg'>
+      <div className='p-4 lg:pl-7 text-base lg:text-lg '>
         {/* <p className='bg-green-300 w-fit px-2 rounded-full'>10 Min</p> */}
-        <div className="flex items-center gap-2">
+        <div className="flex gap-2 text-center items-center justify-between">
           <h2 className="text-lg font-semibold lg:text-3xl">{data.name}</h2>
-          {/* WishList */}
-          <AddWishList data={data} />
+          {/* copy URL */}
+          <div className='hidden lg:block'>
+            <AddWishList data={data} />
+          </div>
+          <FaRegCopy className='lg:hidden block' size={20} />
         </div>
 
         {/* <h2 className='text-lg font-semibold lg:text-3xl'>{data.name}</h2>
@@ -254,7 +277,7 @@ const ProductDisplayPage = () => {
                   </div>
             </div> */}
 
-        <div className='my-7 flex text-center items-center gap-7'>
+        <div className='my-7 flex text-center items-center gap-7 hidden lg:block'>
           <p className='text-gray-500 h-fit flex'>Share</p>
           <div className='flex gap-3'>
             <FaWhatsapp size={25} className='text-gray-700' />
