@@ -695,7 +695,7 @@ const UploadProduct = () => {
           discount: "",
           description: "",
           more_details: {},
-          size: []
+          sizes: []
         })
 
       }
@@ -878,7 +878,7 @@ const UploadProduct = () => {
             </div>
           </div>
 
-          <div className='grid gap-1'>
+          {/* <div className='grid gap-1'>
             <label htmlFor='unit' className='font-medium'>Unit</label>
             <input
               id='unit'
@@ -890,9 +890,9 @@ const UploadProduct = () => {
               required
               className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
             />
-          </div>
+          </div> */}
 
-          <div className='grid gap-1'>
+          {/* <div className='grid gap-1'>
             <label htmlFor='stock' className='font-medium'>Number of Stock</label>
             <input
               id='stock'
@@ -904,7 +904,7 @@ const UploadProduct = () => {
               required
               className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
             />
-          </div>
+          </div> */}
 
           {/* Size */}
           <div className='grid gap-2'>
@@ -912,7 +912,7 @@ const UploadProduct = () => {
             <div className='flex gap-2'>
               <input
                 type="text"
-                placeholder="Size (e.g. S, M, L)"
+                placeholder="Size (e.g. S, Free, 8)"
                 value={tempSize}
                 onChange={(e) => setTempSize(e.target.value)}
                 className='bg-blue-50 p-2 border rounded w-1/2'

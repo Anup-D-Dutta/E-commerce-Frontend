@@ -16,6 +16,9 @@ import { FaCartShopping } from "react-icons/fa6";
 // import CartMobileLink from './components/CartMobile';
 import Brands from './pages/Brands';
 import BottomNavBar from './components/BottomNavBar';
+import Home from './pages/Home';
+import Search from './pages/SearchPage';
+
 
 function App() {
   const dispatch = useDispatch()

@@ -24,45 +24,6 @@ const CardProduct = ({ data }) => {
   const subCategory = subCategoryData?.find(sub => data.subCategory?.includes(sub._id));
 
   return (
-    // <Link to={`/product/${valideURLConvert(data.name)}-${data._id}`} className=' border-black grid gap-1 lg:gap-3 w-52 lg:w-72 rounded cursor-pointer'>
-
-    //   {/* Product Image */}
-    //   <div className='h-40 w-40 shadow-md rounded overflow-hidden  lg:h-64 lg:w-72 border-black'>
-    //     {data.image && data.image.length > 0 ? (
-    //       // <img src={data.image[0]} alt={data.name} className='w-full h-full object-scale-down lg:scale-100' />
-    //       <img src={data.image[0]} alt={data.name} className='w-full h-full  object-contain lg:scale-100' />
-
-    //     ) : (
-    //       <p className="text-red-500 text-xs text-center">No image available</p>
-    //     )}
-    //   </div>
-
-    //   {/* Display Sub Category Name */}
-    //   {subCategory ? (
-    //     <div className='rounded text-sm w-fit px-2 text-black font-bold'>{subCategory.name}</div>
-    //   ) : (
-    //     <p className="text-xs text-red-500">No category</p>
-    //   )}
-
-    //   {/* Product Name */}
-    //   <div className='px-2 font-medium text-ellipsis text-sm lg:text-base line-clamp-2'>
-    //     {data.name || "No name available"}
-    //   </div>
-
-    //   {/* Product Price */}
-    //   <div className='px-2 flex items-center justify-between gap-1 lg:gap-3 text-sm lg:text-base'>
-    //     <div className='font-semibold'>
-    //       {data.price ? `₹${data.price}` : <span className="text-red-500">No price available</span>}
-    //     </div>
-    //     {/* <div>
-    //       {data.stock === 0 ? (
-    //         <p className='text-red-500 text-sm text-center'>Out of stock</p>
-    //       ) : (
-    //         <AddToCartButton data={data} />
-    //       )}
-    //     </div> */}
-    //   </div>
-    // </Link>
     <Link
       to={`/product/${valideURLConvert(data.name)}-${data._id}`}
       className='grid gap-1 w-52 lg:w-72 rounded cursor-pointer'

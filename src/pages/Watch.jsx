@@ -17,7 +17,7 @@ const WatchCategoryDisplay = () => {
   const loadingCardNumber = new Array(6).fill(null);
 
   // Hardcoded category ID for "Watch" (Replace with actual ID from your backend)
-  const watchCategoryId = '67b065a4afb7118a0dedf1a8'
+  const watchCategoryId = '6810fac57cd38e74e096cae8'
 
   const fetchWatchProducts = async () => {
     try {

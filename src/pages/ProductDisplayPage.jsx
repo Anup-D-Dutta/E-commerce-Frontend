@@ -23,6 +23,7 @@ import { FaTwitter, FaRegCopy } from "react-icons/fa6";
 import Accordion from '../components/ProductInformation'
 import DeliveryDetails from '../components/DeliveryDetails'
 import clsx from 'clsx';
+import Header2 from '../components/Header2'
 // import { FaRegCopy } from "react-icons/fa6";
 
 
@@ -37,7 +38,8 @@ const ProductDisplayPage = () => {
   console.log(productId)
   const [data, setData] = useState({
     name: "",
-    image: []
+    image: [],
+    sizes: []
   })
 
 
@@ -84,7 +86,8 @@ const ProductDisplayPage = () => {
 
 
   return (
-    <section className='container mx-auto grid lg:grid-cols-2 '>
+    <section className='container mx-auto grid lg:grid-cols-2'>
+      {/* <Header2 /> */}
       <div className=''>
         <div className='bg-white lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-7 max-h-[24rem] h-full w-full border'>
           <img
@@ -203,7 +206,7 @@ const ProductDisplayPage = () => {
 
                 // <p className='line-through'>{DisplayPriceInRupees(data.price)}</p>
                 <div className='flex'>
-                  <p className='text-xs lg:text-sm'>MRP:</p>
+                  {/* <p className='text-xs lg:text-sm'>MRP:</p> */}
                   <p className='line-through text-sm lg:text-sm'>{DisplayPriceInRupees(data.price)}</p>
 
                 </div>
@@ -211,7 +214,7 @@ const ProductDisplayPage = () => {
             }
             {
               data.discount && (
-                <p className="font-bold text-black lg:text-2xl text-sm ">{data.discount}% <span className='text-base text-neutral-500'>off</span></p>
+                <p className="font-bold text-red-500 lg:text-2xl text-sm ">{data.discount}% <span className='text-base text-red-500'>off</span></p>
               )
             }
 
@@ -220,10 +223,33 @@ const ProductDisplayPage = () => {
         </div>
         {/* <SizeSelector /> */}
 
-        <div className='my-6'>
-          <SizeSelector selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+        {/* {data?.sizes && data.sizes.length > 0 && (
+          <div className="my-4">
+            <p className="font-semibold">Available Sizes:</p>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {data.sizes.map((item, index) => (
+                <div
+                  key={index}
+                  className="px-3 py-1 border border-gray-400 rounded-full text-sm"
+                >
+                  {item.size} (Qty: {item.quantity})
+                </div>
+              ))}
+            </div>
+          </div>
+        )} */}
 
-        </div>
+
+        {/* <div className='my-6'>
+          <SizeSelector selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+        </div> */}
+         <div className='my-1'>
+          <SizeSelector 
+            selectedSize={selectedSize} 
+            setSelectedSize={setSelectedSize} 
+            sizes={data.sizes} // Pass the sizes to the SizeSelector
+          />
+          </div>
 
         {
           data.stock === 0 ? (

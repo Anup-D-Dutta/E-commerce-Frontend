@@ -1,26 +1,31 @@
-import React from 'react'
+import React from 'react';
 
 const CardLoading = () => {
   return (
-    <div className='border py-2 lg:p-4 grid gap-1 lg:gap-3 min-w-36 lg:min-w-52 rounded cursor-pointer bg-white animate-pulse'>
-      <div className='min-h-24 bg-blue-50 rounded'>
-      </div>
-      <div className='p-2 lg:p-3  bg-blue-50 rounded w-20'>
-      </div>
-      <div className='p-2 lg:p-3 bg-blue-50 rounded'>
-      </div>
-      <div className='p-2 lg:p-3 bg-blue-50 rounded w-14'>
+    <div className='grid gap-1 w-52 lg:w-72 rounded cursor-pointer animate-pulse'>
+
+      {/* Image Placeholder */}
+      <div className='h-[13rem] w-[10rem] lg:h-[22rem] lg:w-72 rounded overflow-hidden border bg-blue-50'></div>
+
+      {/* Sub Category Placeholder */}
+      <div className='px-2 h-4 bg-blue-50 rounded w-24'></div>
+      <div className='h-[1px] lg:w-72 w-40 bg-neutral-300'></div>
+
+      {/* Product Name and Wishlist Icon Placeholder */}
+      <div className='px-2 lg:w-72 w-40 flex items-center justify-between'>
+        <div className='h-4 bg-blue-50 rounded w-32'></div>
+        <div className='h-4 bg-blue-50 rounded w-5'></div>
       </div>
 
-      <div className='flex items-center justify-between gap-3'>
-        <div className='p-2 lg:p-3 bg-blue-50 rounded w-20'>
-        </div>
-        <div className='p-2 lg:p-3 bg-blue-50 rounded w-20'>
-        </div>
+      {/* Price Placeholder */}
+      <div className='flex items-center px-2 gap-x-2 w-fit'>
+        <div className='h-4 bg-blue-50 rounded w-16'></div>
+        <div className='h-4 bg-blue-50 rounded w-12'></div>
+        <div className='h-4 bg-blue-50 rounded w-10'></div>
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default CardLoading
+export default CardLoading;
