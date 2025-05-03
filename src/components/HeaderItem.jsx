@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const HeaderItem = () => {
   return (
-    <div className="hidden container mx-auto lg:flex items-center justify-center h-12 w-full text-lg text-center gap-12 border-black mt-2">
+    <div className="hidden container mx-auto lg:flex items-center justify-center h-12 w-full text-lg text-center gap-12 border-black">
       <div className="flex gap-14  border-black">
         {["shoes", "clothes", "sunglasses", "watches", "brands"].map((item) => (
           <NavLink
@@ -21,5 +21,6 @@ const HeaderItem = () => {
     </div>
   );
 };
+
 
 export default HeaderItem;

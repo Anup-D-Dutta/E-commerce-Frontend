@@ -13,7 +13,7 @@ import HeaderItem from "./HeaderItem";
 import Search from "./Search";
 import { useGlobalContext } from "../provider/GlobalProvider";
 import { DisplayPriceInRupees } from "../utils/DisplayPriceInRupees";
-import logo from "../assets/logo2.png";
+import logo from "../assets/logo3.png";
 import { IoMdSearch, IoMdHeartEmpty } from "react-icons/io";
 import { TfiSearch } from "react-icons/tfi";
 import { LiaShoppingBagSolid } from "react-icons/lia";
@@ -59,9 +59,6 @@ const Header = () => {
     };
 
 
-
-
-
     return (
 
         <header
@@ -77,9 +74,9 @@ const Header = () => {
 
                 {/* Logo */}
                 <div className="h-full">
-                    <Link to={"/"} className="h-full flex justify-center items-center">
-                        <img src={logo} width={120} height={60} alt="logo" className="hidden lg:block" style={{ marginRight: "3rem" }} />
-                        <img src={logo} width={80} height={60} alt="logo" className="lg:hidden" />
+                    <Link to={"/"} className=" flex justify-center items-center rounded-full border-black">
+                        <img src={logo} alt="logo" className="hidden w-24 lg:block" />
+                        <img src={logo} alt="logo" className="w-20 lg:hidden" />
                     </Link>
                 </div>
 
@@ -210,8 +207,6 @@ const Header = () => {
 
             </div>
         </header >
-
-
 
     );
 };

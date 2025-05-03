@@ -13,16 +13,17 @@ import AxiosToastError from '../utils/AxiosToastError';
 import successAlert from '../utils/SuccessAlert';
 import { useEffect } from 'react';
 
-const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
+const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
   const [data, setData] = useState({
-    _id : propsData._id,
+    _id: propsData._id,
     name: propsData.name,
     image: propsData.image,
     category: propsData.category,
     subCategory: propsData.subCategory,
-    unit: propsData.unit,
-    stock: propsData.stock,
+    artist_details: propsData.artist_details,
+    details: propsData.details,
     price: propsData.price,
+    sizes: propsData.sizes,
     discount: propsData.discount,
     description: propsData.description,
     more_details: propsData.more_details || {},
@@ -36,6 +37,8 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
 
   const [openAddField, setOpenAddField] = useState(false)
   const [fieldName, setFieldName] = useState("")
+  const [tempSize, setTempSize] = useState("")
+  const [tempQty, setTempQty] = useState("")
 
 
   const handleChange = (e) => {
@@ -123,7 +126,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
 
       if (responseData.success) {
         successAlert(responseData.message)
-        if(close){
+        if (close) {
           close()
         }
         fetchProductData()
@@ -132,8 +135,8 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
           image: [],
           category: [],
           subCategory: [],
-          unit: "",
-          stock: "",
+          artist_details: "",
+          details: "",
           price: "",
           discount: "",
           description: "",
@@ -155,7 +158,7 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
           <div className='p-2   bg-white shadow-md flex items-center justify-between'>
             <h2 className='font-semibold'>Upload Product</h2>
             <button onClick={close}>
-              <IoClose size={20}/>
+              <IoClose size={20} />
             </button>
           </div>
           <div className='grid p-3'>
@@ -181,6 +184,36 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                   placeholder='Enter product description'
                   name='description'
                   value={data.description}
+                  onChange={handleChange}
+                  required
+                  multiple
+                  rows={3}
+                  className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded resize-none'
+                />
+              </div>
+              <div className='grid gap-1'>
+                <label htmlFor='details' className='font-medium'>Details</label>
+                <textarea
+                  id='details'
+                  type='text'
+                  placeholder='Enter product details'
+                  name='details'
+                  value={data.details}
+                  onChange={handleChange}
+                  required
+                  multiple
+                  rows={3}
+                  className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded resize-none'
+                />
+              </div>
+              <div className='grid gap-1'>
+                <label htmlFor='details' className='font-medium'>Artist's Details</label>
+                <textarea
+                  id='artist_details'
+                  type='text'
+                  placeholder='Enter product details'
+                  name='artist_details'
+                  value={data.artist_details}
                   onChange={handleChange}
                   required
                   multiple
@@ -254,11 +287,15 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                   >
                     <option value={""}>Select Category</option>
                     {
-                      allCategory.map((c, index) => {
-                        return (
-                          <option value={c?._id}>{c.name}</option>
-                        )
-                      })
+                      // allCategory.map((c, index) => {
+                      //   return (
+                      //     <option value={c?._id}>{c.name}</option>
+                      //   )
+                      // })
+                      allCategory.map((c) => (
+                        <option key={c._id} value={c._id}>{c.name}</option>
+                      ))
+
                     }
                   </select>
                   <div className='flex flex-wrap gap-3'>
@@ -298,11 +335,15 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                   >
                     <option value={""} className='text-neutral-600'>Select Sub Category</option>
                     {
-                      allSubCategory.map((c, index) => {
-                        return (
-                          <option value={c?._id}>{c.name}</option>
-                        )
-                      })
+                      // allSubCategory.map((c, index) => {
+                      //   return (
+                      //     <option value={c?._id}>{c.name}</option>
+                      //   )
+                      // })
+                      allSubCategory.map((c) => (
+                        <option key={c._id} value={c._id}>{c.name}</option>
+                      ))
+
                     }
                   </select>
                   <div className='flex flex-wrap gap-3'>
@@ -322,33 +363,63 @@ const EditProductAdmin = ({ close ,data : propsData,fetchProductData}) => {
                 </div>
               </div>
 
-              <div className='grid gap-1'>
-                <label htmlFor='unit' className='font-medium'>Unit</label>
-                <input
-                  id='unit'
-                  type='text'
-                  placeholder='Enter product unit'
-                  name='unit'
-                  value={data.unit}
-                  onChange={handleChange}
-                  required
-                  className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
-                />
-              </div>
 
-              <div className='grid gap-1'>
-                <label htmlFor='stock' className='font-medium'>Number of Stock</label>
-                <input
-                  id='stock'
-                  type='number'
-                  placeholder='Enter product stock'
-                  name='stock'
-                  value={data.stock}
-                  onChange={handleChange}
-                  required
-                  className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
-                />
+              {/* Size */}
+              <div className='grid gap-2'>
+                <label className='font-medium'>Sizes</label>
+                <div className='flex gap-2'>
+                  <input
+                    type="text"
+                    placeholder="Size (e.g. S, Free, 8)"
+                    value={data.value}
+                    onChange={(e) => setTempSize(e.target.value)}
+                    className='bg-blue-50 p-2 border rounded w-1/2'
+                  />
+                  <input
+                    type="number"
+                    placeholder="Quantity"
+                    value={data.value}
+                    onChange={(e) => setTempQty(e.target.value)}
+                    className='bg-blue-50 p-2 border rounded w-1/2'
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (tempSize && tempQty) {
+                        setData((prev) => ({
+                          ...prev,
+                          sizes: [...prev.sizes, { size: tempSize, quantity: Number(tempQty) }]
+                        }));
+                        setTempSize("");
+                        setTempQty("");
+                      }
+                    }}
+                    className='bg-primary-100 px-4 rounded hover:bg-primary-200'
+                  >
+                    Add
+                  </button>
+                </div>
+
+                {/* Render added sizes */}
+                <div className='flex gap-3 flex-wrap mt-2'>
+                  {
+                    data.sizes?.map((s, index) => (
+                      <div key={index} className='bg-blue-50 p-2 rounded flex gap-2 items-center'>
+                        <span>{s.size} - Qty: {s.quantity}</span>
+                        <MdDelete
+                          onClick={() => {
+                            const newSizes = data.sizes.filter((_, i) => i !== index)
+                            setData((prev) => ({ ...prev, sizes: newSizes }))
+                          }}
+                          className='text-red-500 cursor-pointer'
+                        />
+                      </div>
+                    ))
+                  }
+
+                </div>
               </div>
+              {/* Size */}
 
               <div className='grid gap-1'>
                 <label htmlFor='price' className='font-medium'>Price</label>

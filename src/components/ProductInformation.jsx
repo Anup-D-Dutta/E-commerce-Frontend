@@ -52,7 +52,13 @@ export default function Accordion({ data }) {
 
       <ProductInformation
         title="Product Details"
-        content="This product is made from eco-friendly materials."
+        content={
+          <div>
+            <p className="font-semibold">Details</p>
+            <p className="text-base">{data?.details}</p>
+          </div>
+        }
+
         isOpen={openIndex === 0}
         onToggle={() => handleToggle(0)}
       />
@@ -78,7 +84,13 @@ export default function Accordion({ data }) {
       />
       <ProductInformation
         title="Artist's Details"
-        content="Created by a local artist with over 10 years of experience."
+        // content="Created by a local artist with over 10 years of experience."
+        content={
+          <div>
+            <p className="font-semibold">Artist's details</p>
+            <p className="text-base">{data?.artist_details}</p>
+          </div>
+        }
         isOpen={openIndex === 2}
         onToggle={() => handleToggle(2)}
       />

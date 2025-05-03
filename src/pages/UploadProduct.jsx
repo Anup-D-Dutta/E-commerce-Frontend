@@ -573,11 +573,11 @@ const UploadProduct = () => {
     image: [],
     category: [],
     subCategory: [],
-    unit: "",
-    stock: "",
     price: "",
     discount: "",
+    details: "",
     description: "",
+    artist_details: "",
     more_details: {},
 
     sizes: [],
@@ -689,11 +689,11 @@ const UploadProduct = () => {
           image: [],
           category: [],
           subCategory: [],
-          unit: "",
-          stock: "",
           price: "",
           discount: "",
+          details: "",
           description: "",
+          artist_details: "",
           more_details: {},
           sizes: []
         })
@@ -730,6 +730,21 @@ const UploadProduct = () => {
             />
           </div>
           <div className='grid gap-1'>
+            <label htmlFor='details' className='font-medium'>Details</label>
+            <textarea
+              id='details'
+              type='text'
+              placeholder='Enter product details'
+              name='details'
+              value={data.details}
+              onChange={handleChange}
+              required
+              multiple
+              rows={3}
+              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded resize-none'
+            />
+          </div>
+          <div className='grid gap-1'>
             <label htmlFor='description' className='font-medium'>Description</label>
             <textarea
               id='description'
@@ -737,6 +752,21 @@ const UploadProduct = () => {
               placeholder='Enter product description'
               name='description'
               value={data.description}
+              onChange={handleChange}
+              required
+              multiple
+              rows={3}
+              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded resize-none'
+            />
+          </div>
+          <div className='grid gap-1'>
+            <label htmlFor='artist_details' className='font-medium'>Artist's Details</label>
+            <textarea
+              id='artist_details'
+              type='text'
+              placeholder='Enter artist details'
+              name='artist_details'
+              value={data.artist_details}
               onChange={handleChange}
               required
               multiple
@@ -877,34 +907,6 @@ const UploadProduct = () => {
               </div>
             </div>
           </div>
-
-          {/* <div className='grid gap-1'>
-            <label htmlFor='unit' className='font-medium'>Unit</label>
-            <input
-              id='unit'
-              type='text'
-              placeholder='Enter product unit'
-              name='unit'
-              value={data.unit}
-              onChange={handleChange}
-              required
-              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
-            />
-          </div> */}
-
-          {/* <div className='grid gap-1'>
-            <label htmlFor='stock' className='font-medium'>Number of Stock</label>
-            <input
-              id='stock'
-              type='number'
-              placeholder='Enter product stock'
-              name='stock'
-              value={data.stock}
-              onChange={handleChange}
-              required
-              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
-            />
-          </div> */}
 
           {/* Size */}
           <div className='grid gap-2'>
