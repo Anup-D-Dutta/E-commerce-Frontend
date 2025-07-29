@@ -15,3 +15,5 @@ Currently, two official plugins are available:
 <img width="1896" height="912" alt="Screenshot 2025-07-29 220511" src="https://github.com/user-attachments/assets/52f39dd0-beb7-4165-9112-2e768388e8d7" />
 <img width="1899" height="909" alt="Screenshot 2025-07-29 220529" src="https://github.com/user-attachments/assets/00f122e1-181f-4749-a39f-050750b885d7" />
 <img width="1884" height="919" alt="Screenshot 2025-06-11 152128" src="https://github.com/user-attachments/assets/1345cc9e-cd8f-48aa-a560-429dfd09bdff" />
+<img width="1886" height="915" alt="Screenshot 2025-06-11 151943" src="https://github.com/user-attachments/assets/121582e5-617e-4eac-a9f4-4fd828544fb3" />
+<img width="1885" height="916" alt="Screenshot 2025-06-11 152305" src="https://github.com/user-attachments/assets/8c71a786-6d12-4e9f-9de3-7c97f026e9b8" />
